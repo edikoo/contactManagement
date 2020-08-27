@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
-use App\Repositories\ContactRepository;
+use App\Repositories\ContactRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -11,7 +10,7 @@ class ContactController extends Controller
 
     private $contactRepository;
 
-    public function __construct(ContactRepository $contactRepository)
+    public function __construct(ContactRepositoryInterface $contactRepository)
     {
 
         $this->contactRepository = $contactRepository;
@@ -55,7 +54,7 @@ class ContactController extends Controller
     }
 
 
-    public function delete($contactId)
+    public function destroy($contactId)
     {
         $this->contactRepository->delete($contactId);
         return redirect()->route('index');

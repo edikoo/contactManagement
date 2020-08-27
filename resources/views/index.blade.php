@@ -25,7 +25,7 @@
                                 <td><a href="{{ route('show', $contact['id']) }}" class="btn btn-info">Show</a></td>
                                 <td><a href="{{ route('edit', $contact['id']) }}" class="btn btn-warning">Edit</a></td>
                                 <td>
-                                    <form method="POST" action="{{ route('delete', $contact['id']) }}">
+                                    <form method="POST" action="{{ route('destroy', $contact['id']) }}">
                                         @csrf
                                         @method("DELETE")
                                         <div class="form-group">

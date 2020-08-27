@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Contact;
 use Illuminate\Http\Request;
 
-class ContactRepository
+class ContactRepository implements ContactRepositoryInterface
 {
 
     public function all()
