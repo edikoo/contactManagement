@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface ContactRepositoryInterface
+interface IqueryableRepositoryInterface
 {
     public function all();
+
+    public function query();
 
     public function findById($contactId);
 
     public function findByName($customerName);
-
-    public function findByPhone($customerPhone);
 
     public function store(Request $request);
 
@@ -21,6 +21,4 @@ interface ContactRepositoryInterface
     public function update(Request $request, $contactId);
 
     public function delete($contactId);
-
-    public function validateRequest(Request $request);
 }

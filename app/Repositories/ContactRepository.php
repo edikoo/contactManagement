@@ -3,9 +3,10 @@
 namespace App\Repositories;
 
 use App\Contact;
-use Illuminate\Http\Request;
+use App\Services\LogService;
+use Illuminate\Support\Facades\DB;
 
-class ContactRepository implements ContactRepositoryInterface
+class ContactRepository implements Interfaces\IqueryableRepositoryInterface
 {
 
     public function all()
@@ -15,6 +16,12 @@ class ContactRepository implements ContactRepositoryInterface
             ->map
             ->format();
     }
+    
+    public function query()
+    {
+        return Comment::query();
+    }
+
 
     public function findById($contactId)
     {
@@ -26,17 +33,16 @@ class ContactRepository implements ContactRepositoryInterface
         return Contact::where('name', $customerName)->firstOrFail();
     }
 
-    public function findByPhone($customerPhone)
+    public function store($data)
     {
-        return Contact::where('phone', $customerPhone)->firstOrFail();
-    }
+        DB::transaction(function () use ($data) {
+            $contact = new Contact;
+            $contact->create($data);
 
-    public function store(Request $request)
-    {
-        $data = $this->validateRequest($request);
+            $LogService = new LogService;
+            $LogService->createLog("Inserted New Contact");
+        });
 
-        $contact = new Contact;
-        $contact->create($data);
     }
 
     public function edit($contactId)
@@ -44,12 +50,16 @@ class ContactRepository implements ContactRepositoryInterface
         return Contact::findOrFail($contactId);
     }
 
-    public function update(Request $request, $contactId)
+    public function update($data, $contactId)
     {
-        $data = $this->validateRequest($request);
+        DB::transaction(function () use ($data, $contactId) {
+            $contact = Contact::findOrFail($contactId);
+            $contact->update($data);
 
-        $contact = Contact::findOrFail($contactId);
-        $contact->update($data);
+            $LogService = new LogService;
+            $LogService->createLog("Updated Current Data! ContactId: ".$contactId);
+        });
+
     }
 
     public function delete($contactId)
@@ -57,11 +67,4 @@ class ContactRepository implements ContactRepositoryInterface
         $contact = Contact::findOrFail($contactId)->delete();
     }
 
-    public function validateRequest(Request $request)
-    {
-        return $request->validate([
-            'name' => 'required|string',
-            'phone' => 'required|string|min:8|max:11'
-        ]);
-    }
 }

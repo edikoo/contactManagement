@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 mt-5">
+                <a href="{{ route('comment.index') }}" class="btn btn-primary float-left">Comments</a>
                 <a href="{{ route('create') }}" class="btn btn-success float-right">Add New Contact</a>
                 <table class="table table-striped mt-5">
                     <thead>
