@@ -6,6 +6,9 @@ use App\Comment;
 use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 
+use App\Events\NotificationEvent;
+
+
 class CommentRepository implements Interfaces\IqueryableRepositoryInterface
 {
     public function all()
@@ -39,6 +42,9 @@ class CommentRepository implements Interfaces\IqueryableRepositoryInterface
 
             $LogService = new LogService;
             $LogService->createLog("Inserted New Comment");
+
+            event(new NotificationEvent("Created New Record In Database"));
+
         });
     }
 
@@ -55,6 +61,9 @@ class CommentRepository implements Interfaces\IqueryableRepositoryInterface
 
             $LogService = new LogService;
             $LogService->createLog("Updated Current Data! commentId: ".$commentId);
+
+            event(new NotificationEvent("Updated Current Record In Database"));
+
         });
 
     }

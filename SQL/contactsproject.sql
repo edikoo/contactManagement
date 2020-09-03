@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2020 at 08:54 AM
+-- Generation Time: Sep 03, 2020 at 11:05 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -41,7 +41,10 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, '1th Comment', '2020-09-01 12:43:50', '2020-09-01 12:49:33'),
 (5, '24Th data', '2020-09-02 12:56:24', '2020-09-02 13:13:24'),
-(7, '25ThComment', '2020-09-02 13:13:10', '2020-09-02 13:13:10');
+(7, '25ThComment', '2020-09-02 13:13:10', '2020-09-02 13:13:10'),
+(9, '203Th Comment', '2020-09-03 16:00:33', '2020-09-03 16:00:33'),
+(11, 'test203Th Comment', '2020-09-03 16:01:38', '2020-09-03 16:01:38'),
+(15, 'test203Th Comment', '2020-09-03 16:04:22', '2020-09-03 16:04:22');
 
 -- --------------------------------------------------------
 
@@ -104,7 +107,10 @@ CREATE TABLE `logs` (
 INSERT INTO `logs` (`id`, `name`) VALUES
 (1, 'Inserted New Comment'),
 (2, 'Updated Current Data! commentId: 5'),
-(3, 'Inserted New Contact');
+(3, 'Inserted New Contact'),
+(5, 'Inserted New Comment'),
+(7, 'Inserted New Comment'),
+(11, 'Inserted New Comment');
 
 -- --------------------------------------------------------
 
@@ -128,6 +134,26 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_08_27_164430_create_contacts_table', 1),
 (6, '2020_09_01_051250_create_comments_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `notification_id` int(111) NOT NULL,
+  `notification_user` varchar(999) DEFAULT NULL,
+  `notification_text` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`notification_id`, `notification_user`, `notification_text`) VALUES
+(1, 'Admin', 'Created New Record In Database'),
+(2, 'User', 'Created New Record In Database');
 
 -- --------------------------------------------------------
 
@@ -193,6 +219,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notification_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -213,7 +245,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -231,13 +263,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `notification_id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

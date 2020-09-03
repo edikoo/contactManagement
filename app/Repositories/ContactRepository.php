@@ -6,6 +6,8 @@ use App\Contact;
 use App\Services\LogService;
 use Illuminate\Support\Facades\DB;
 
+use App\Events\NotificationEvent;
+
 class ContactRepository implements Interfaces\IqueryableRepositoryInterface
 {
 
@@ -41,6 +43,8 @@ class ContactRepository implements Interfaces\IqueryableRepositoryInterface
 
             $LogService = new LogService;
             $LogService->createLog("Inserted New Contact");
+
+            event(new NotificationEvent("Created New Record In Database"));
         });
 
     }
@@ -58,8 +62,9 @@ class ContactRepository implements Interfaces\IqueryableRepositoryInterface
 
             $LogService = new LogService;
             $LogService->createLog("Updated Current Data! ContactId: ".$contactId);
-        });
 
+            event(new NotificationEvent("Updated Current Record In Database"));
+        });
     }
 
     public function delete($contactId)
