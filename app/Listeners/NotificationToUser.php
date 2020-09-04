@@ -6,10 +6,12 @@ use App\Events\NotificationEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-use App\Services\NotificationService;
+use App\Traits\LogAndNotificationTrait;
 
 class NotificationToUser
 {
+    use LogAndNotificationTrait;
+
     /**
      * Create the event listener.
      *
@@ -28,7 +30,6 @@ class NotificationToUser
      */
     public function handle(NotificationEvent $event)
     {
-        $NotificationService = new NotificationService;
-        $NotificationService->createNotification('User', $event->notification);
+        $this->createNotification('User', $event->notification);
     }
 }

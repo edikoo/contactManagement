@@ -3,29 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
-use App\Repositories\Interfaces\IqueryableRepositoryInterface;
-use Illuminate\Http\Request;
+
+use App\Comment;
+use App\Services\MainService;
 
 class CommentController extends Controller
 {
 
-    private $commentRepository;
+    private $Comment;
+    private $mainService;
 
-    public function __construct(IqueryableRepositoryInterface $commentRepository)
+    public function __construct(Comment $Comment, MainService $mainService)
     {
-
-        $this->commentRepository = $commentRepository;
+        $this->Comment = $Comment;
+        $this->mainService = $mainService;
     }
 
     public function index()
     {
-        $comments = $this->commentRepository->all();
+        $comments = $this->mainService->all($this->Comment);
         return view('Comment.index', compact('comments'));
     }
 
     public function query()
     {
-        $query = $this->commentRepository->query()->select('name')->where('id', 1)->first();
+        $query = $this->mainService->query($this->Comment)->select('name')->where('id', 1)->first();
     }
 
     public function create()
@@ -35,34 +37,34 @@ class CommentController extends Controller
 
     public function store(CommentRequest $request)
     {
-        $this->commentRepository->store($request->toArray());
+        $this->mainService->store($this->Comment, $request->toArray());
         return redirect()->back()->withInput()->with('success', 'We Have New Comment');
     }
 
 
     public function show($contactId)
     {
-        $contact = $this->commentRepository->findById($contactId);
+        $contact = $this->mainService->findById($this->Comment, $contactId);
         return view('Comment.show', compact('contact'));
     }
 
 
     public function edit($contactId)
     {
-        $contact = $this->commentRepository->edit($contactId);
+        $contact = $this->mainService->edit($this->Comment, $contactId);
         return view('Comment.edit', compact('contact'));
     }
 
     public function update(CommentRequest $request, $contactId)
     {
-        $this->commentRepository->update($request->toArray(), $contactId);
+        $this->mainService->update($this->Comment, $request->toArray(), $contactId);
         return redirect()->back()->withInput()->with('success', 'Comment Updated Successfully');
     }
 
 
     public function destroy($contactId)
     {
-        $this->commentRepository->delete($contactId);
+        $this->mainService->delete($this->Comment, $contactId);
         return redirect()->route('comment.index');
     }
 }

@@ -1,19 +1,15 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
 
-//Interfaces
-use App\Repositories\Interfaces\IqueryableRepositoryInterface;
+use App\Repositories\Interfaces\RepositoryInterface;
+use App\Repositories\MainRepository;
 
-//Repositories
-use App\Repositories\ContactRepository;
-use App\Repositories\CommentRepository;
+use App\Services\Interfaces\ServiceInterface;
+use App\Services\MainService;
 
-//Controllers
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CommentController;
+
 
 class RepositoriesServiceProvider extends ServiceProvider
 {
@@ -34,12 +30,24 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->bind(
+            RepositoryInterface::class,
+            MainRepository::class
+        );
+        $this->app->bind(
+            ServiceInterface::class,
+            MainService::class
+        );
+
+
+        /*
         $this->app->when(ContactController::class)
-        ->needs(IqueryableRepositoryInterface::class)
-        ->give(ContactRepository::class);
+        ->needs(RepositoryInterface::class)
+        ->give(MainRepository::class);
 
         $this->app->when(CommentController::class)
-        ->needs(IqueryableRepositoryInterface::class)
-        ->give(CommentRepository::class);
+        ->needs(RepositoryInterface::class)
+        ->give(MainRepository::class);
+        */
     }
 }

@@ -20,7 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10a048de-8b23-4da1-9061-a247567343f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Services/Interfaces/ServiceInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/LogAndNotificationTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ContactRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ContactRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/NotificationToAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/NotificationToAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/NotificationToUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/NotificationToUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoriesServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoriesServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CommentRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ContactRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Interfaces/IqueryableRepositoryInterface.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/LogService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/NotificationService.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +193,7 @@
       <workItem from="1598553295446" duration="464000" />
       <workItem from="1599024358770" duration="1017000" />
       <workItem from="1599025377667" duration="5103000" />
+      <workItem from="1599225576349" duration="5638000" />
     </task>
     <servers />
   </component>
@@ -202,18 +216,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="586" y="198" key="#Inspections" timestamp="1599027961749">
+    <state x="586" y="198" key="#Inspections" timestamp="1599229468907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="586" y="198" key="#Inspections/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599027961749" />
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599229468907" />
     <state x="765" y="202" key="#com.intellij.ide.util.MemberChooser" timestamp="1599025775658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="202" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599025775658" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599028382428">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599228736010">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599028382428" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599228736010" />
     <state x="707" y="260" width="505" height="598" key="#com.jetbrains.php.refactoring.extract.interface.PhpExtractInterfaceDialog#" timestamp="1598553459861">
       <screen x="0" y="31" width="1920" height="1049" />
     </state>
@@ -246,13 +260,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="718" y="243" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599026739054" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1599027827792">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1599228108748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599027827792" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1599027830325">
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599228108748" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1599225641584">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599027830325" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1599225641584" />
   </component>
 </project>

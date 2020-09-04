@@ -3,29 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
-use App\Repositories\Interfaces\IqueryableRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Services\MainService;
+
+use App\Contact;
 
 class ContactController extends Controller
 {
 
-    private $contactRepository;
+    private $Contact;
+    private $mainService;
 
-    public function __construct(IqueryableRepositoryInterface $contactRepository)
+    public function __construct(Contact $Contact, MainService $mainService)
     {
-
-        $this->contactRepository = $contactRepository;
+        $this->Contact = $Contact;
+        $this->mainService = $mainService;
     }
 
     public function index()
     {
-        $contacts = $this->contactRepository->all();
+        $contacts = $this->mainService->query($this->Contact)->get();
+
+
+
         return view('Contact.index', compact('contacts'));
     }
 
     public function query()
     {
-        $query = $this->contactRepository->query();
+        $query = $this->mainService->query($this->Contact);
     }
 
     public function create()
@@ -35,33 +40,32 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        $this->contactRepository->store($request->toArray());
-        return redirect()->back()->withInput()->with('success', 'We Have New Contact');
+        $this->mainService->store($this->Contact, $request);
     }
 
     public function show($contactId)
     {
-        $contact = $this->contactRepository->findById($contactId);
+        $contact = $this->mainService->findById($this->Contact, $contactId);
         return view('Contact.show', compact('contact'));
     }
 
 
     public function edit($contactId)
     {
-        $contact = $this->contactRepository->edit($contactId);
+        $contact = $this->mainService->edit($this->Contact, $contactId);
         return view('Contact.edit', compact('contact'));
     }
 
     public function update(ContactRequest $request, $contactId)
     {
-        $this->contactRepository->update($request->toArray(), $contactId);
+        $this->mainService->update($this->Contact, $request, $contactId);
         return redirect()->back()->withInput()->with('success', 'Contact Updated Successfully');
     }
 
 
     public function destroy($contactId)
     {
-        $this->contactRepository->delete($contactId);
+        $this->mainService->delete($this->Contact, $contactId);
         return redirect()->route('index');
     }
 }

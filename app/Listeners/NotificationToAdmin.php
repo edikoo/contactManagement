@@ -6,11 +6,12 @@ use App\Events\NotificationEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-use App\Services\NotificationService;
+use App\Traits\LogAndNotificationTrait;
 
 
 class NotificationToAdmin
 {
+    use LogAndNotificationTrait;
     /**
      * Create the event listener.
      *
@@ -29,7 +30,6 @@ class NotificationToAdmin
      */
     public function handle(NotificationEvent $event)
     {
-        $NotificationService = new NotificationService;
-        $NotificationService->createNotification('Admin', $event->notification);
+        $this->createNotification('Admin', $event->notification);
     }
 }
